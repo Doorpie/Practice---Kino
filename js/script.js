@@ -25,12 +25,23 @@ function apiSearch(event) {
             output.results.forEach(function (item) {
                 let nameItem = item.name || item.title;
                 console.log(nameItem);
-                inner += `
-                <div class='col-3 item'>
-                    <img src='${urlPoster + item.poster_path}' alt='${nameItem}'>
-                    <h5>${nameItem}</h5>
-                </div>
-                `;
+                if (item.poster_path == null) {
+                    inner += `
+                    <div class='col-3 item'>
+                    <div class = 'poster'></div>
+                        <h5>${nameItem}</h5>
+                    </div>
+                    `;
+                }
+
+                else{
+                    inner += `
+                    <div class='col-3 item'>
+                        <img src='${urlPoster + item.poster_path}' alt='${nameItem}'>
+                        <h5>${nameItem}</h5>
+                    </div>
+                    `;
+                }
             });
 
             movie.innerHTML = inner;
